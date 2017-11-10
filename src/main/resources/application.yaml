@@ -1,0 +1,36 @@
+network:
+  orderer:
+    name: orderer.example.com
+    url: grpcs://127.0.0.1:7050
+    certificate: /home/kraytsman/workspace/fabric-samples/balance-transfer/artifacts/channel/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
+  organizations:
+    - name: org1
+      peers:
+        - name: peer0.org1.example.com
+          url: grpcs://127.0.0.1:7051
+          event: grpcs://127.0.0.1:7053
+          certificate: /home/kraytsman/workspace/fabric-samples/balance-transfer/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.crt
+        - name: peer1.org1.example.com
+          url: grpcs://127.0.0.1:7056
+          event: grpcs://127.0.0.1:7058
+          certificate: /home/kraytsman/workspace/fabric-samples/balance-transfer/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/server.crt
+      users:
+        - name: Admin
+          role: ADMIN
+          msp: Org1MSP
+          certificate: /home/kraytsman/workspace/fabric-samples/balance-transfer/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/msp/admincerts/Admin@org1.example.com-cert.pem
+          privateKey: /home/kraytsman/workspace/fabric-samples/balance-transfer/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/5890f0061619c06fb29dea8cb304edecc020fe63f41a6db109f1e227cc1cb2a8_sk
+        - name: User1
+          role: USER
+          msp: Org1MSP
+          certificate: /home/kraytsman/workspace/fabric-samples/balance-transfer/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/admincerts/User1@org1.example.com-cert.pem
+          privateKey: /home/kraytsman/workspace/fabric-samples/balance-transfer/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/73cdc0072c7203f1ec512232c780fc84acc9752ef30ebc16be1f4666c02b614b_sk
+  channel:
+    name: mychannel
+    configFile: /home/kraytsman/workspace/fabric-samples/balance-transfer/artifacts/channel/mychannel.tx
+  chaincode:
+    name: example_cc_go
+    version: v0
+    pathToFile: github.com/example_cc
+    sourceLocation: /home/kraytsman/workspace/fabric-samples/balance-transfer/artifacts
+  endorsmentPolicy: /home/kraytsman/workspace/chiancode-client-java/src/main/resources/chaincodeendorsementpolicy.yaml
